@@ -15,14 +15,15 @@ public class Main {
       w = Integer.parseInt(scanner.nextLine());
     }
     int h = 2 * w/3;
+    int r = 5;
     for (int y = 0; y <= h; y++)
     {
       for (int x = 0; x <= w; x++)
       {
         int p1 = h * x - w * y;
         int p2 = h * x + w * y - h * w;
-        int k = (x - w / 2) * (x - w / 2) + (y - h / 2) * (y - h / 2) - 16;
-        if (Math.abs(evalElipse(x, y, w/2, h/2, w/4, h/4)) < 0.4 ) {
+        int k = (x - w / 2) * (x - w / 2) + (y - h / 2) * (y - h / 2) - r*r;
+        if (k <= 0 && x <= w/2) {
           System.out.print("*");
         } else {
           System.out.print(".");
@@ -34,6 +35,6 @@ public class Main {
   
   public static double evalElipse(int x, int y, int sx, int sy, int a, int b)
   {
-    return ((Math.pow(x-sx, 2))/(Math.pow(a, 2)) - (Math.pow(y-sy, 2))/(Math.pow(b, 2)) - 1);
+    return ((Math.pow(x-sx, 2))/(Math.pow(a, 2)) + (Math.pow(y-sy, 2))/(Math.pow(b, 2)) - 1);
   }
 }
